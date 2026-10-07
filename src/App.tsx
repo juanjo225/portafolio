@@ -9,6 +9,33 @@ const technologies = [
   { name: 'Git & GitHub', type: 'HERRAMIENTAS', mark: '⌘', color: 'git' },
 ]
 
+const projects = [
+  {
+    title: 'Proyecto-final',
+    description: 'agenda de turnos de barberia con asistente virtual.',
+    category: 'DESARROLLO WEB',
+    year: '2026',
+    link: 'proyecto-final-liart-seven.vercel.app',
+    linkLabel: 'Ver proyecto',
+  },
+  {
+    title: 'mi-pagina',
+    description: 'fila creativa.',
+    category: 'DISEÑO + CÓDIGO',
+    year: '2026',
+    link: 'universidad-psi.vercel.app',
+    linkLabel: 'Ver proyecto',
+  },
+  {
+    title: 'Experimento digital',
+    description: 'Puedes duplicar o eliminar objetos de esta lista para mantener actualizado tu portafolio.',
+    category: 'EXPERIMENTAL',
+    year: '2024',
+    link: 'https://example.com',
+    linkLabel: 'Ver proyecto',
+  },
+]
+
 function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <span aria-hidden="true" className="arrow">{diagonal ? '↗' : '→'}</span>
 }
@@ -31,7 +58,8 @@ function App() {
         <nav className={menuOpen ? 'navigation is-open' : 'navigation'} aria-label="Navegación principal">
           <a href="#inicio" onClick={closeMenu}><span>01</span> Inicio</a>
           <a href="#tecnologias" onClick={closeMenu}><span>02</span> Tecnologías</a>
-          <a href="#contacto" onClick={closeMenu}><span>03</span> Contacto</a>
+          <a href="#proyectos" onClick={closeMenu}><span>03</span> Proyectos</a>
+          <a href="#contacto" onClick={closeMenu}><span>04</span> Contacto</a>
         </nav>
         <a className="availability" href="#contacto"><span className="status-dot" /> Disponible para proyectos</a>
       </header>
@@ -73,6 +101,23 @@ function App() {
                 <div className="card-top"><span className={`tech-mark ${tech.color}`}>{tech.mark}</span><span className="card-index">0{index + 1}</span></div>
                 <h3>{tech.name}</h3><span className="tech-type">{tech.type}</span>
                 <div className="card-bottom"><span className="card-rule" /><span className="card-plus">↗</span></div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+
+        <section className="projects-section section-wrap" id="proyectos">
+          <div className="section-heading">
+            <div><div className="eyebrow"><span className="eyebrow-line" /> SELECCIÓN DE TRABAJOS</div><h2>Proyectos <span>recientes</span></h2></div>
+            <p>Una muestra de ideas que he convertido en experiencias digitales. Cada proyecto puede enlazar a su sitio o repositorio.</p>
+          </div>
+          <div className="projects-grid">
+            {projects.map((project, index) => (
+              <article className="project-card" key={project.title}>
+                <div className="project-card-top"><span>{project.category}</span><span>0{index + 1} / 0{projects.length}</span></div>
+                <div className="project-art" aria-hidden="true"><span className="project-art-mark">{String(index + 1).padStart(2, '0')}<i>.</i></span><span className="project-art-orbit" /></div>
+                <div className="project-info"><div><h3>{project.title}</h3><span className="project-year">{project.year}</span></div><p>{project.description}</p><a href={project.link} target="_blank" rel="noreferrer">{project.linkLabel}<Arrow diagonal /></a></div>
               </article>
             ))}
           </div>
